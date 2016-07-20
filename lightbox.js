@@ -21,7 +21,7 @@
       '/' + photo.id + '_' + photo.secret + '_q.jpg';
   }
 
-  function buildTLargeImageUrl(photo) {
+  function buildLargeImageUrl(photo) {
     return 'https://farm' + photo.farm + '.staticflickr.com/' + photo.server +
       '/' + photo.id + '_' + photo.secret + '_b.jpg';
   }
@@ -42,7 +42,7 @@
           imgElem = document.createElement('img');
           imgElem.setAttribute('src', url);
           imgElem.className = 'photo';
-          imgElem.onclick = getLargeImage(photosArr[i]);
+          imgElem.onclick = expandPhoto(photosArr[i]);
           photoGalleryDiv.appendChild(imgElem);
         }
       } else {
@@ -51,12 +51,28 @@
     }
   }
 
-  function getLargeImage(photo) {
+  function showOverlay(src) {
+    var overlayImage = document.getElementById('overlay-image'),
+    overlayDiv = document.getElementById('overlay');
+    overlayDiv.setAttribute('class', 'overlay');
+    overlayImage.setAttribute('src', src);
+    overlayImage.setAttribute('class', 'overlay-image');
+    overlayImage.onclick = hideOverlay;
+  }
+
+  function expandPhoto(photo) {
     return function() {
-      var el = document.getElementsByClassName('overlay')[0];
-      el.style.visibility = (el.style.visibility == "visible") ? "hidden" : "visible";
+      showOverlay(buildLargeImageUrl(photo));
     }
 
+  }
+
+  function hideOverlay() {
+    var overlayImage = document.getElementById('overlay-image'),
+    overlayDiv = document.getElementById('overlay');
+    overlayDiv.setAttribute('class', 'hide-overlay');
+    overlayImage.setAttribute('src', '');
+    overlayImage.setAttribute('class', 'hide-overlay');
   }
 
   function makeRequest(url) {
