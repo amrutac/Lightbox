@@ -4,12 +4,31 @@ body {
 }
 
 .container {
-  height: 100%;
-  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
 }
 
-.photo {
-  padding: 10px;
+.thumbnail {
+  padding: 22px;
+  -webkit-transition: all 200ms ease-in;
+  -webkit-transform: scale(1);
+  -ms-transition: all 200ms ease-in;
+  -ms-transform: scale(1);
+  -moz-transition: all 200ms ease-in;
+  -moz-transform: scale(1);
+  transition: all 200ms ease-in;
+  transform: scale(1);
+}
+
+.thumbnail:hover {
+  -webkit-transition: all 200ms ease-in;
+  -webkit-transform: scale(1.5);
+  -ms-transition: all 200ms ease-in;
+  -ms-transform: scale(1.5);
+  -moz-transition: all 200ms ease-in;
+  -moz-transform: scale(1.5);
+  transition: all 200ms ease-in;
+  transform: scale(1.5);
 }
 
 .overlay
@@ -20,8 +39,9 @@ body {
    position: fixed; top: 0; left: 0;
    width: 100%; height: 100%;
    z-index: 10;
-   text-align: center;
+
 }
+
 .overlay-image
 {
   position: fixed;
@@ -29,8 +49,38 @@ body {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
+  transition: all 200ms ease-in;
+
 }
 
 .hide-overlay {
   display: none;
+}
+
+.previous {
+  position: fixed;
+  top: 50%;
+  left: 20%;
+  height: 0;
+  width: 0;
+  border-top: 40px solid transparent;
+  border-bottom: 40px solid transparent;
+
+  border-right: 40px solid #fff;
+  transform: translate(-50%, -50%);
+  z-index: 12;
+}
+
+.next {
+  height: 0;
+  width: 0;
+  border-top: 40px solid transparent;
+  border-bottom: 40px solid transparent;
+
+  border-left: 40px solid #fff;
+  position: fixed;
+  top: 50%;
+  left: 80%;
+  transform: translate(-50%, -50%);
+  z-index: 12;
 }

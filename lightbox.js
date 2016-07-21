@@ -1,5 +1,7 @@
 (function initApp() {
   var httpRequest = new XMLHttpRequest(),
+    currentImageIndex = null,
+    photosArr = [],
     flickrAPIUrl = 'https://api.flickr.com/services/rest/?',
     params = {
       method: 'flickr.interestingness.getList',
@@ -29,10 +31,11 @@
   function handleImages() {
     if (httpRequest.readyState === XMLHttpRequest.DONE) {
       if (httpRequest.status === 200) {
-        var photosObj, photosArr, photosLen, photoGalleryDiv;
+        var photosObj, photosLen, photoGalleryDiv;
 
         photosObj = JSON.parse(httpRequest.responseText).photos;
         photosArr = photosObj.photo;
+        console.log(photosArr)
         photosLen = photosObj.photo.length;
         photoGalleryDiv = document.getElementsByClassName('photo-gallery')[0];
 
@@ -41,8 +44,8 @@
           url = buildThumbnailUrl(photosArr[i]);
           imgElem = document.createElement('img');
           imgElem.setAttribute('src', url);
-          imgElem.className = 'photo';
-          imgElem.onclick = expandPhoto(photosArr[i]);
+          imgElem.className = 'thumbnail';
+          imgElem.onclick = expandPhoto(i);
           photoGalleryDiv.appendChild(imgElem);
         }
       } else {
@@ -52,19 +55,36 @@
   }
 
   function showOverlay(src) {
-    var overlayImage = document.getElementById('overlay-image'),
-    overlayDiv = document.getElementById('overlay');
+     var overlayImage = document.getElementById('overlay-image'),
+      prev = document.getElementsByClassName('previous')[0],
+      next = document.getElementsByClassName('next')[0],
+      overlayDiv = document.getElementById('overlay');
+    console.log('src', src)
     overlayDiv.setAttribute('class', 'overlay');
     overlayImage.setAttribute('src', src);
     overlayImage.setAttribute('class', 'overlay-image');
     overlayImage.onclick = hideOverlay;
+    prev.onclick = showPrevImage;
+    next.onclick = showNextImage;
   }
 
-  function expandPhoto(photo) {
+  function showNextImage() {
+    var setupOverlay = expandPhoto(++currentImageIndex);
+    setupOverlay();
+  }
+
+  function showPrevImage() {
+    var setupOverlay = expandPhoto(--currentImageIndex);
+    setupOverlay();
+  }
+
+  function expandPhoto(index) {
     return function() {
+      var photo = photosArr[index];
+      console.log(photo)
+      currentImageIndex = index;
       showOverlay(buildLargeImageUrl(photo));
     }
-
   }
 
   function hideOverlay() {
