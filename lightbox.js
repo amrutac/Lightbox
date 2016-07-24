@@ -42,6 +42,7 @@
 
         for (i = 0; i < photosLen; i++) {
           var url, imgElem;
+
           url = buildThumbnailUrl(photosArr[i]);
           imgElem = document.createElement('img');
           imgElem.setAttribute('src', url);
@@ -106,6 +107,15 @@
   function fetchImages() {
     makeRequest(flickrAPIUrl + buildQueryString());
   }
+
+  document.addEventListener('keydown', function(event) {
+    if(event.keyCode == 37) {
+      showPrevImage();
+    }
+    else if(event.keyCode == 39) {
+      showNextImage();
+    }
+});
 
   fetchImages();
 })();
