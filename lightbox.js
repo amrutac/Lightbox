@@ -11,8 +11,8 @@
     };
 
   function buildQueryString() {
-    var queryString = '';
-    for (let key in params) {
+    var queryString = '', key;
+    for (key in params) {
       queryString += key + '=' + encodeURIComponent(params[key]) + '&';
     }
     return queryString;
@@ -29,18 +29,19 @@
   }
 
   function handleImages() {
+    var i;
+
     if (httpRequest.readyState === XMLHttpRequest.DONE) {
       if (httpRequest.status === 200) {
         var photosObj, photosLen, photoGalleryDiv;
 
         photosObj = JSON.parse(httpRequest.responseText).photos;
         photosArr = photosObj.photo;
-        console.log(photosArr)
         photosLen = photosObj.photo.length;
         photoGalleryDiv = document.getElementsByClassName('photo-gallery')[0];
 
-        for (let i = 0; i < photosLen; i++) {
-          let url, imgElem;
+        for (i = 0; i < photosLen; i++) {
+          var url, imgElem;
           url = buildThumbnailUrl(photosArr[i]);
           imgElem = document.createElement('img');
           imgElem.setAttribute('src', url);
@@ -58,14 +59,15 @@
      var overlayImage = document.getElementById('overlay-image'),
       prev = document.getElementsByClassName('previous')[0],
       next = document.getElementsByClassName('next')[0],
+      close = document.getElementsByClassName('close')[0],
       overlayDiv = document.getElementById('overlay');
-    console.log('src', src)
+
     overlayDiv.setAttribute('class', 'overlay');
     overlayImage.setAttribute('src', src);
     overlayImage.setAttribute('class', 'overlay-image');
-    overlayImage.onclick = hideOverlay;
     prev.onclick = showPrevImage;
     next.onclick = showNextImage;
+    close.onclick = hideOverlay;
   }
 
   function showNextImage() {

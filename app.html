@@ -5,24 +5,28 @@
     <title>Lightbox</title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
     <link rel="stylesheet" href="styles.css" />
   </head>
   <body>
     <section>
+
       <div class="container">
-        <h2>Lightbox</h2>
+        <h2>Lightroom App</h2>
         <div class="photo-gallery"></div>
-
-        </div>
       </div>
-      <div id="overlay"></div>
-      <img id="overlay-image" />
-      <div class="previous">
 
+      <div id="overlay" class="hide-overlay">
+        <div class="previous"></div>
+        <div class="next"></div>
+        <div class="close">X</div>
       </div>
-      <div class="next">
 
-      </div>
+      <figure>
+        <img id="overlay-image" />
+        <figcaption></figcaption>
+      </figure>
+
     </section>
     <script src="lightbox.js"></script>
   </body>
