@@ -74,6 +74,7 @@ body {
 
   height: 0;
   left: 10%;
+  opacity: 0.3;
   position: fixed;
   top: 50%;
   width: 0;
@@ -90,9 +91,9 @@ body {
 
   cursor: pointer;
   height: 0;
-
+  opacity: 0.3;
   position: fixed;
-  right: 10%;
+  right: 8%;
   top: 50%;
 
   -webkit-transform: translate(-50%, -50%);
@@ -104,13 +105,18 @@ body {
   z-index: 12;
 }
 
+.prev:hover, .next:hover {
+  opacity: 0.8;
+}
+
 .close {
   background: #333;
   cursor: pointer;
   height: 0;
   position: fixed;
-  right: 10%;
-  top: 10%;
+  right: 5%;
+  top: 5%;
+  font-size: 2em;
 
   -webkit-transform: translate(-50%, -50%);
   -moz-transform: translate(-50%, -50%);
@@ -119,7 +125,14 @@ body {
 
   width: 0;
   z-index: 12;
-
 }
 
+.circle {
+  height: 40px;
+  width: 40px;
+  background-color: #333;
+  line-height: 40px;
+  text-align: center;
+  border-radius: 50%
+}
 
