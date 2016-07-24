@@ -52,8 +52,8 @@
 
           url = buildThumbnailUrl(photosArr[i]);
           imgElem = document.createElement('img');
-          imgElem.setAttribute('src', url);
           imgElem.className = 'thumbnail';
+          imgElem.setAttribute('src', url);
           imgElem.onclick = expandPhoto(i);
           photoGalleryDiv.appendChild(imgElem);
         }
