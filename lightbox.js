@@ -56,21 +56,34 @@
     }
   }
 
+  function hidePlaceholderImage() {
+    var imgOverlayElem = document.getElementsByClassName('overlay-image')[0],
+      placeholderElem = document.getElementsByClassName('overlay-image-placeholder')[0];
+
+      placeholderElem.className = 'overlay-image-placeholder no-opacity';
+      imgOverlayElem.className = 'overlay-image full-opacity';
+  }
+
   function showOverlay(photo) {
      var overlayImageWrapper = document.getElementsByClassName('overlay-image-wrapper')[0],
       prev = document.getElementsByClassName('previous')[0],
       next = document.getElementsByClassName('next')[0],
       close = document.getElementsByClassName('close')[0],
       overlayDiv = document.getElementById('overlay'),
-      src = buildLargeImageUrl(photo), imgOverlayElem, titleElem;
+      imgOverlayElem, titleElem, placeholderElem;
 
     overlayDiv.setAttribute('class', 'overlay');
     imgOverlayElem = document.getElementsByClassName('overlay-image')[0];
     titleElem = document.getElementsByClassName('overlay-image-title')[0];
+    placeholderElem = document.getElementsByClassName('overlay-image-placeholder')[0];
 
     if (!imgOverlayElem) {
+      //placeholder
+      placeholderElem = document.createElement('img');
+      overlayImageWrapper.appendChild(placeholderElem);
+
       imgOverlayElem = document.createElement('img');
-      imgOverlayElem.className = 'overlay-image';
+      imgOverlayElem.onload = hidePlaceholderImage;
       overlayImageWrapper.appendChild(imgOverlayElem);
 
       titleElem = document.createElement('span');
@@ -79,7 +92,11 @@
 
     }
 
-    imgOverlayElem.setAttribute('src', src);
+    imgOverlayElem.className = 'overlay-image no-opacity no-opacity';
+    placeholderElem.className = 'overlay-image-placeholder full-opacity';
+
+    imgOverlayElem.setAttribute('src', buildLargeImageUrl(photo));
+    placeholderElem.setAttribute('src', buildThumbnailUrl(photo));
     titleElem.textContent = photo.title;
 
     prev.onclick = showPrevImage;
@@ -108,7 +125,7 @@
   function hideOverlay() {
     var overlayImage = document.getElementById('overlay-image'),
     overlayDiv = document.getElementById('overlay');
-    overlayDiv.setAttribute('class', 'hide-overlay');
+    overlayDiv.setAttribute('class', 'hide');
   }
 
   function makeRequest(url) {
@@ -128,7 +145,7 @@
     else if(event.keyCode == 39) {
       showNextImage();
     }
-});
+  });
 
   fetchImages();
 })();
