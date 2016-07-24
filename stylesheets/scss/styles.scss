@@ -65,10 +65,11 @@ body {
 
 .overlay-image-title {
   font-size: 1.5em;
-  left: 24%;
+  left: 47%;
   position: absolute;
-  max-width: 1000px;
-  top: 10%;
+  width: 900px;
+  top: 5%;
+  transform: translate(-50%, -50%);
 }
 
 .hide {
@@ -90,7 +91,7 @@ body {
 }
 
 .next {
-  @include centered(50%, 92%);
+  @include centered(50%, 90%);
   border-top: 30px solid transparent;
   border-bottom: 30px solid transparent;
   border-left: 30px solid #fff;
@@ -108,7 +109,7 @@ body {
 }
 
 .close {
-  @include centered(50%, 95%);
+  @include centered(5%, 95%);
   background: #333;
   cursor: pointer;
   height: 0;
@@ -159,8 +160,8 @@ body {
 @media screen and (max-width: 680px) {
   .overlay-image-title {
     font-size: 1em;
-    left: 20%;
-    max-width: 680px;
+    left: 65%;
+    max-width: 600px;
   }
 }
 

@@ -54,18 +54,19 @@ body {
 /* line 66, scss/styles.scss */
 .overlay-image-title {
   font-size: 1.5em;
-  left: 24%;
+  left: 47%;
   position: absolute;
-  max-width: 1000px;
-  top: 10%;
+  width: 900px;
+  top: 5%;
+  transform: translate(-50%, -50%);
 }
 
-/* line 74, scss/styles.scss */
+/* line 75, scss/styles.scss */
 .hide {
   display: none;
 }
 
-/* line 78, scss/styles.scss */
+/* line 79, scss/styles.scss */
 .previous {
   top: 50%;
   left: 10%;
@@ -84,10 +85,10 @@ body {
   z-index: 12;
 }
 
-/* line 92, scss/styles.scss */
+/* line 93, scss/styles.scss */
 .next {
   top: 50%;
-  left: 92%;
+  left: 90%;
   -webkit-transform: translate(-50%, -50%);
   -moz-transform: translate(-50%, -50%);
   -ms-transform: translate(-50%, -50%);
@@ -103,14 +104,14 @@ body {
   z-index: 12;
 }
 
-/* line 106, scss/styles.scss */
+/* line 107, scss/styles.scss */
 .prev:hover, .next:hover {
   opacity: 0.8;
 }
 
-/* line 110, scss/styles.scss */
+/* line 111, scss/styles.scss */
 .close {
-  top: 50%;
+  top: 5%;
   left: 95%;
   -webkit-transform: translate(-50%, -50%);
   -moz-transform: translate(-50%, -50%);
@@ -125,7 +126,7 @@ body {
   z-index: 12;
 }
 
-/* line 121, scss/styles.scss */
+/* line 122, scss/styles.scss */
 .circle {
   background-color: #333;
   border-radius: 50%;
@@ -135,7 +136,7 @@ body {
   width: 40px;
 }
 
-/* line 130, scss/styles.scss */
+/* line 131, scss/styles.scss */
 .overlay-image-placeholder {
   top: 50%;
   left: 50%;
@@ -157,7 +158,7 @@ body {
   width: 1024px;
 }
 
-/* line 145, scss/styles.scss */
+/* line 146, scss/styles.scss */
 .overlay-image {
   top: 50%;
   left: 50%;
@@ -172,21 +173,21 @@ body {
   position: fixed;
 }
 
-/* line 151, scss/styles.scss */
+/* line 152, scss/styles.scss */
 .full-opacity {
   opacity: 1;
 }
 
-/* line 155, scss/styles.scss */
+/* line 156, scss/styles.scss */
 .no-opacity {
   opacity: 0;
 }
 
 @media screen and (max-width: 680px) {
-  /* line 160, scss/styles.scss */
+  /* line 161, scss/styles.scss */
   .overlay-image-title {
     font-size: 1em;
-    left: 20%;
-    max-width: 680px;
+    left: 65%;
+    max-width: 600px;
   }
 }

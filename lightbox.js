@@ -28,6 +28,12 @@
       '/' + photo.id + '_' + photo.secret + '_b.jpg';
   }
 
+  function setupThumnail(event) {
+    var elem = event.target || event.srcElement,
+    src = elem.getAttribute('data-src');
+    elem.src = src;
+  }
+
   function handleImages() {
     var i;
 
@@ -45,7 +51,9 @@
 
           url = buildThumbnailUrl(photosArr[i]);
           imgElem = document.createElement('img');
-          imgElem.setAttribute('src', url);
+          imgElem.setAttribute('data-src', url);
+          imgElem.setAttribute('src', 'http://placehold.it/150x150?text=Loading');
+          imgElem.onload = setupThumnail;
           imgElem.className = 'thumbnail';
           imgElem.onclick = expandPhoto(i);
           photoGalleryDiv.appendChild(imgElem);
@@ -64,7 +72,21 @@
       imgOverlayElem.className = 'overlay-image full-opacity';
   }
 
-  function showOverlay(photo) {
+  function togglePrevNext(index, prev, next) {
+    if (index === 0) {
+      prev.classList.toggle('hide');
+    } else {
+      prev.classList.remove('hide');
+    }
+
+    if (index === photosArr.length - 1) {
+      next.classList.toggle('hide');
+    } else {
+      next.classList.remove('hide');
+    }
+  }
+
+  function showOverlay(photo, index) {
      var overlayImageWrapper = document.getElementsByClassName('overlay-image-wrapper')[0],
       prev = document.getElementsByClassName('previous')[0],
       next = document.getElementsByClassName('next')[0],
@@ -89,10 +111,11 @@
       titleElem = document.createElement('span');
       titleElem.className = 'overlay-image-title';
       overlayImageWrapper.appendChild(titleElem);
-
     }
 
-    imgOverlayElem.className = 'overlay-image no-opacity no-opacity';
+    togglePrevNext(index, prev, next);
+
+    imgOverlayElem.className = 'overlay-image no-opacity';
     placeholderElem.className = 'overlay-image-placeholder full-opacity';
 
     imgOverlayElem.setAttribute('src', buildLargeImageUrl(photo));
@@ -118,7 +141,7 @@
     return function() {
       var photo = photosArr[index];
       currentImageIndex = index;
-      showOverlay(photo);
+      showOverlay(photo, index);
     }
   }
 
