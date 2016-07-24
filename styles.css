@@ -26,7 +26,6 @@ body {
 }
 
 .thumbnail:hover {
-  content: 'text';
   -webkit-transform: scale(1.5);
   -ms-transform: scale(1.5);
   -moz-transform: scale(1.5);
@@ -44,7 +43,7 @@ body {
   z-index: 10;
 }
 
-.overlay-image {
+.overlay-image-wrapper {
   left: 50%;
   position: fixed;
   top: 50%;
@@ -61,6 +60,28 @@ body {
   z-index: 11;
 }
 
+.overlay-image-title {
+  font-size: 1.5em;
+  left: 50%;
+  position: absolute;
+  top: 90%;
+  display: inline-table;
+  -webkit-transform: translate(-50%, -50%);
+  -moz-transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+  opacity: 0;
+}
+
+.overlay-image-wrapper:hover .overlay-image {
+  -webkit-filter: opacity(0.8);
+  filter: opacity(0.8);
+}
+
+.overlay-image-wrapper:hover .overlay-image-title {
+  opacity: 1;
+}
+
 .hide-overlay {
   display: none;
 }
@@ -74,7 +95,7 @@ body {
 
   height: 0;
   left: 10%;
-  opacity: 0.3;
+  opacity: 0.5;
   position: fixed;
   top: 50%;
   width: 0;
@@ -91,7 +112,7 @@ body {
 
   cursor: pointer;
   height: 0;
-  opacity: 0.3;
+  opacity: 0.5;
   position: fixed;
   right: 8%;
   top: 50%;

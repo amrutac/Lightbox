@@ -56,16 +56,32 @@
     }
   }
 
-  function showOverlay(src) {
-     var overlayImage = document.getElementById('overlay-image'),
+  function showOverlay(photo) {
+     var overlayImageWrapper = document.getElementsByClassName('overlay-image-wrapper')[0],
       prev = document.getElementsByClassName('previous')[0],
       next = document.getElementsByClassName('next')[0],
       close = document.getElementsByClassName('close')[0],
-      overlayDiv = document.getElementById('overlay');
+      overlayDiv = document.getElementById('overlay'),
+      src = buildLargeImageUrl(photo), imgOverlayElem, titleElem;
 
     overlayDiv.setAttribute('class', 'overlay');
-    overlayImage.setAttribute('src', src);
-    overlayImage.setAttribute('class', 'overlay-image');
+    imgOverlayElem = document.getElementsByClassName('overlay-image')[0];
+    titleElem = document.getElementsByClassName('overlay-image-title')[0];
+
+    if (!imgOverlayElem) {
+      imgOverlayElem = document.createElement('img');
+      imgOverlayElem.className = 'overlay-image';
+      overlayImageWrapper.appendChild(imgOverlayElem);
+
+      titleElem = document.createElement('span');
+      titleElem.className = 'overlay-image-title';
+      overlayImageWrapper.appendChild(titleElem);
+
+    }
+
+    imgOverlayElem.setAttribute('src', src);
+    titleElem.textContent = photo.title;
+
     prev.onclick = showPrevImage;
     next.onclick = showNextImage;
     close.onclick = hideOverlay;
@@ -84,9 +100,8 @@
   function expandPhoto(index) {
     return function() {
       var photo = photosArr[index];
-      console.log(photo)
       currentImageIndex = index;
-      showOverlay(buildLargeImageUrl(photo));
+      showOverlay(photo);
     }
   }
 
@@ -94,8 +109,6 @@
     var overlayImage = document.getElementById('overlay-image'),
     overlayDiv = document.getElementById('overlay');
     overlayDiv.setAttribute('class', 'hide-overlay');
-    overlayImage.setAttribute('src', '');
-    overlayImage.setAttribute('class', 'hide-overlay');
   }
 
   function makeRequest(url) {
