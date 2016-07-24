@@ -28,7 +28,7 @@
       '/' + photo.id + '_' + photo.secret + '_b.jpg';
   }
 
-  function setupThumnail(event) {
+  function lazyLoadThumbnail(event) {
     var elem = event.target || event.srcElement,
     src = elem.getAttribute('data-src');
     elem.src = src;
@@ -51,9 +51,7 @@
 
           url = buildThumbnailUrl(photosArr[i]);
           imgElem = document.createElement('img');
-          imgElem.setAttribute('data-src', url);
-          imgElem.setAttribute('src', 'http://placehold.it/150x150?text=Loading');
-          imgElem.onload = setupThumnail;
+          imgElem.setAttribute('src', url);
           imgElem.className = 'thumbnail';
           imgElem.onclick = expandPhoto(i);
           photoGalleryDiv.appendChild(imgElem);
