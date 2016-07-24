@@ -18,20 +18,17 @@
     return queryString;
   }
 
-  function buildThumbnailUrl(photo) {
+  function buildUrl(photo, photoSize) {
     return 'https://farm' + photo.farm + '.staticflickr.com/' + photo.server +
-      '/' + photo.id + '_' + photo.secret + '_q.jpg';
+      '/' + photo.id + '_' + photo.secret + photoSize + '.jpg';
+  }
+
+  function buildThumbnailUrl(photo) {
+    return buildUrl(photo, '_q');
   }
 
   function buildLargeImageUrl(photo) {
-    return 'https://farm' + photo.farm + '.staticflickr.com/' + photo.server +
-      '/' + photo.id + '_' + photo.secret + '_b.jpg';
-  }
-
-  function lazyLoadThumbnail(event) {
-    var elem = event.target || event.srcElement,
-    src = elem.getAttribute('data-src');
-    elem.src = src;
+    return buildUrl(photo, '_b');
   }
 
   function handleImages() {
@@ -62,7 +59,7 @@
     }
   }
 
-  function hidePlaceholderImage() {
+  function lazyLoadImage() {
     var imgOverlayElem = document.getElementsByClassName('overlay-image')[0],
       placeholderElem = document.getElementsByClassName('overlay-image-placeholder')[0];
 
@@ -103,7 +100,7 @@
       overlayImageWrapper.appendChild(placeholderElem);
 
       imgOverlayElem = document.createElement('img');
-      imgOverlayElem.onload = hidePlaceholderImage;
+      imgOverlayElem.onload = lazyLoadImage;
       overlayImageWrapper.appendChild(imgOverlayElem);
 
       titleElem = document.createElement('span');
@@ -159,12 +156,24 @@
     makeRequest(flickrAPIUrl + buildQueryString());
   }
 
+  //Keyboard events
   document.addEventListener('keydown', function(event) {
-    if(event.keyCode == 37) {
+    if(event.keyCode === 37) {
       showPrevImage();
     }
-    else if(event.keyCode == 39) {
+
+    if(event.keyCode === 39) {
       showNextImage();
+    }
+  });
+
+  document.addEventListener('keydown', function(event) {
+    if(event.keyCode === 13 || event.keyCode === 32) {
+      showNextImage();
+    }
+
+    if(event.keyCode === 27) {
+      hideOverlay();
     }
   });
 
