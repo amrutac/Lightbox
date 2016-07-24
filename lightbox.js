@@ -31,6 +31,10 @@
     return buildUrl(photo, '_b');
   }
 
+  function $(selector) {
+    return document.querySelector(selector);
+  }
+
   function handleImages() {
     var i;
 
@@ -41,7 +45,7 @@
         photosObj = JSON.parse(httpRequest.responseText).photos;
         photosArr = photosObj.photo;
         photosLen = photosObj.photo.length;
-        photoGalleryDiv = document.getElementsByClassName('photo-gallery')[0];
+        photoGalleryDiv = $('.photo-gallery');
 
         for (i = 0; i < photosLen; i++) {
           var url, imgElem;
@@ -60,8 +64,8 @@
   }
 
   function lazyLoadImage() {
-    var imgOverlayElem = document.getElementsByClassName('overlay-image')[0],
-      placeholderElem = document.getElementsByClassName('overlay-image-placeholder')[0];
+    var imgOverlayElem = $('.overlay-image'),
+      placeholderElem = $('.overlay-image-placeholder');
 
       placeholderElem.className = 'overlay-image-placeholder no-opacity';
       imgOverlayElem.className = 'overlay-image full-opacity';
@@ -82,17 +86,17 @@
   }
 
   function showOverlay(photo, index) {
-     var overlayImageWrapper = document.getElementsByClassName('overlay-image-wrapper')[0],
-      prev = document.getElementsByClassName('previous')[0],
-      next = document.getElementsByClassName('next')[0],
-      close = document.getElementsByClassName('close')[0],
-      overlayDiv = document.getElementById('overlay'),
+    var overlayImageWrapper = $('.overlay-image-wrapper'),
+      prev = $('.previous'),
+      next = $('.next'),
+      close = $('.close'),
+      overlayDiv = $('#overlay'),
       imgOverlayElem, titleElem, placeholderElem;
 
     overlayDiv.setAttribute('class', 'overlay');
-    imgOverlayElem = document.getElementsByClassName('overlay-image')[0];
-    titleElem = document.getElementsByClassName('overlay-image-title')[0];
-    placeholderElem = document.getElementsByClassName('overlay-image-placeholder')[0];
+    imgOverlayElem = $('.overlay-image');
+    titleElem = $('.overlay-image-title');
+    placeholderElem = $('.overlay-image-placeholder');
 
     if (!imgOverlayElem) {
       //placeholder
@@ -141,8 +145,7 @@
   }
 
   function hideOverlay() {
-    var overlayImage = document.getElementById('overlay-image'),
-    overlayDiv = document.getElementById('overlay');
+    var overlayDiv = $('#overlay');
     overlayDiv.setAttribute('class', 'hide');
   }
 
