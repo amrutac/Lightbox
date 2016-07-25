@@ -5,16 +5,21 @@
     overlayDiv.setAttribute('class', 'hide');
   }
 
+
   function handleResponse(response, err) {
-    var errorDiv = Utility.$('.error');
+    var errorDiv = Utility.$('.error'),
+      responseJson;
+
     if (response) {
-      this.photos = JSON.parse(response).photos.photo;
+      responseJson = JSON.parse(response);
       errorDiv.classList.add('hide');
+      this.photos = this.photos.concat(responseJson.photos.photo);
+      this.totalPages = responseJson.photos.pages;
+      this.setShowMore();
       this.processThumbnailImages();
     } else if (err) {
       errorDiv.classList.remove('hide');
     }
-
   }
 
   function thumbnailClickHandler(index, gallery) {
@@ -48,6 +53,8 @@
   function Gallery() {
     this.currentImageIndex = null;
     this.photos = [];
+    this.pageNumber = 1;
+    this.totalPages;
 
     //Keyboard events
     document.addEventListener('keydown', this.keyDownHandler.bind(this));
@@ -75,9 +82,8 @@
     }
   }
 
-
   Gallery.prototype.load = function() {
-    Utility.makeFlickrRequest(handleResponse, this);
+    Utility.makeFlickrRequest(this.pageNumber, handleResponse, this);
   };
 
   Gallery.prototype.processThumbnailImages = function() {
@@ -159,6 +165,26 @@
   Gallery.prototype.showPrevImage = function() {
     this.showOverlay(--this.currentImageIndex);
   };
+
+  Gallery.prototype.showMore = function() {
+    ++this.pageNumber;
+    this.load();
+  };
+
+  Gallery.prototype.setShowMore = function() {
+    var showMoreBtn = Utility.$('.show-more');
+
+    if (this.pageNumber >= this.totalPages) {
+      showMoreBtn.classList.add('hide');
+    } else {
+      showMoreBtn.classList.remove('hide');
+      showMoreBtn.onclick = function(event) {
+        event.preventDefault();
+        this.showMore();
+      }.bind(this);
+    }
+
+  }
 
   window.Gallery = Gallery;
 })(document, window);

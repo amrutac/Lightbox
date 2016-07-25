@@ -23,6 +23,7 @@ body {
 .container {
   margin: 0 auto;
   text-align: center;
+  padding-bottom: 25px;
   max-width: 1200px;
 }
 
@@ -100,7 +101,7 @@ body {
 }
 
 .previous {
-  @include centered(50%, 10%);
+  @include centered(50%, 8%);
   border-top: 30px solid transparent;
   border-bottom: 30px solid transparent;
   border-right: 30px solid #fff;
@@ -113,7 +114,7 @@ body {
 }
 
 .next {
-  @include centered(50%, 90%);
+  @include centered(50%, 92%);
   border-top: 30px solid transparent;
   border-bottom: 30px solid transparent;
   border-left: 30px solid #fff;
@@ -128,6 +129,20 @@ body {
 
 .prev:hover, .next:hover {
   opacity: 0.8;
+}
+
+.show-more {
+  background-color: #333;
+  border-radius: 4px;
+  color: #fff;
+  height: 40px;
+  margin-bottom: 20px;
+  padding: 10px 15px;
+  text-decoration: none;
+}
+
+.show-more:hover {
+  background: #999;
 }
 
 .close {
@@ -148,6 +163,10 @@ body {
   line-height: 40px;
   text-align: center;
   width: 40px;
+}
+
+.circle:hover, .circle:focus {
+  background-color: #999;
 }
 
 .hide {
