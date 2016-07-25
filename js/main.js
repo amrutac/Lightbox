@@ -1,4 +1,6 @@
 (function(document, window) {
+  'use strict';
+
   function init() {
     var gallery = new Gallery();
     gallery.load();

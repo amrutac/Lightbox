@@ -9,10 +9,11 @@ body {
 .container {
   margin: 0 auto;
   text-align: center;
+  padding-bottom: 25px;
   max-width: 1200px;
 }
 
-/* line 29, scss/styles.scss */
+/* line 30, scss/styles.scss */
 .thumbnail {
   cursor: pointer;
   margin: 25px;
@@ -29,7 +30,7 @@ body {
   transform: scale(1);
 }
 
-/* line 47, scss/styles.scss */
+/* line 48, scss/styles.scss */
 .thumbnail:hover {
   -webkit-transform: scale(1.5);
   -ms-transform: scale(1.5);
@@ -37,7 +38,7 @@ body {
   transform: scale(1.5);
 }
 
-/* line 54, scss/styles.scss */
+/* line 55, scss/styles.scss */
 .overlay {
   background-color: #000;
   height: 100%;
@@ -49,7 +50,7 @@ body {
   z-index: 10;
 }
 
-/* line 65, scss/styles.scss */
+/* line 66, scss/styles.scss */
 .overlay-image-wrapper {
   height: 100%;
   position: relative;
@@ -57,7 +58,7 @@ body {
   z-index: 11;
 }
 
-/* line 72, scss/styles.scss */
+/* line 73, scss/styles.scss */
 .overlay-image {
   top: 50%;
   left: 50%;
@@ -72,7 +73,7 @@ body {
   position: fixed;
 }
 
-/* line 78, scss/styles.scss */
+/* line 79, scss/styles.scss */
 .overlay-image-placeholder {
   top: 50%;
   left: 50%;
@@ -94,10 +95,9 @@ body {
   width: 1024px;
 }
 
-/* line 93, scss/styles.scss */
+/* line 94, scss/styles.scss */
 .overlay-image-title {
   bottom: 25px;
-  font-size: 1.5em;
   left: 0;
   position: absolute;
   right: 0;
@@ -108,7 +108,7 @@ body {
 /* line 103, scss/styles.scss */
 .previous {
   top: 50%;
-  left: 10%;
+  left: 8%;
   -webkit-transform: translate(-50%, -50%);
   -moz-transform: translate(-50%, -50%);
   -ms-transform: translate(-50%, -50%);
@@ -127,7 +127,7 @@ body {
 /* line 116, scss/styles.scss */
 .next {
   top: 50%;
-  left: 90%;
+  left: 92%;
   -webkit-transform: translate(-50%, -50%);
   -moz-transform: translate(-50%, -50%);
   -ms-transform: translate(-50%, -50%);
@@ -149,6 +149,22 @@ body {
 }
 
 /* line 134, scss/styles.scss */
+.show-more {
+  background-color: #333;
+  border-radius: 4px;
+  color: #fff;
+  height: 40px;
+  margin-bottom: 20px;
+  padding: 10px 15px;
+  text-decoration: none;
+}
+
+/* line 144, scss/styles.scss */
+.show-more:hover {
+  background: #999;
+}
+
+/* line 148, scss/styles.scss */
 .close {
   top: 5%;
   left: 95%;
@@ -165,7 +181,7 @@ body {
   z-index: 12;
 }
 
-/* line 145, scss/styles.scss */
+/* line 159, scss/styles.scss */
 .circle {
   background-color: #333;
   border-radius: 50%;
@@ -175,24 +191,22 @@ body {
   width: 40px;
 }
 
-/* line 154, scss/styles.scss */
+/* line 168, scss/styles.scss */
+.circle:hover, .circle:focus {
+  background-color: #999;
+}
+
+/* line 172, scss/styles.scss */
 .hide {
   display: none;
 }
 
-/* line 158, scss/styles.scss */
+/* line 176, scss/styles.scss */
 .full-opacity {
   opacity: 1;
 }
 
-/* line 162, scss/styles.scss */
+/* line 180, scss/styles.scss */
 .no-opacity {
   opacity: 0;
-}
-
-@media screen and (max-width: 680px) {
-  /* line 167, scss/styles.scss */
-  .overlay-image-title {
-    font-size: 1em;
-  }
 }

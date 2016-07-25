@@ -1,5 +1,7 @@
 (function(document, window) {
-  var httpRequest, settings;
+  'use strict';
+
+  var settings;
 
   settings = {
     basePath: 'https://api.flickr.com/services/rest/?',
@@ -11,19 +13,25 @@
     }
   };
 
-  function buildQueryString() {
+  function buildQueryString(pageNumber) {
     var queryString = '', key, params = settings.params;
+
     for (key in params) {
       queryString += key + '=' + encodeURIComponent(params[key]) + '&';
     }
+
+    if (pageNumber) {
+      queryString += 'page=' + pageNumber;
+    }
+
     return queryString;
   }
 
-  function makeFlickrRequest(callback, context) {
+  function makeFlickrRequest(pageNumber, callback, context) {
     var url, httpRequest;
 
     httpRequest = new XMLHttpRequest();
-    url = settings.basePath + buildQueryString();
+    url = settings.basePath + buildQueryString(pageNumber);
     httpRequest.onreadystatechange = function () {
       if (httpRequest.readyState === XMLHttpRequest.DONE) {
         if (httpRequest.status === 200) {
