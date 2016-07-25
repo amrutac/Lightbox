@@ -92,7 +92,6 @@ body {
 
 .overlay-image-title {
   bottom: 25px;
-  font-size: 1.5em;
   left: 0;
   position: absolute;
   right: 0;
@@ -161,11 +160,5 @@ body {
 
 .no-opacity {
   opacity: 0;
-}
-
-@media screen and (max-width: 680px) {
-  .overlay-image-title {
-    font-size: 1em;
-  }
 }
 

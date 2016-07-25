@@ -1,4 +1,5 @@
 (function(document, window) {
+  'use strict';
   function hideOverlay() {
     var overlayDiv = Utility.$('#overlay');
     overlayDiv.setAttribute('class', 'hide');
@@ -19,7 +20,7 @@
   function thumbnailClickHandler(index, gallery) {
     return function() {
       gallery.showOverlay(index);
-    }
+    };
   }
 
   function lazyLoadImage() {
@@ -54,7 +55,6 @@
   }
 
   Gallery.prototype.keyDownHandler = function(event) {
-
     if(event.keyCode === 37) {
       this.showPrevImage();
     }
@@ -77,11 +77,11 @@
 
 
   Gallery.prototype.load = function() {
-    var i, photosLen, photoGalleryDiv;
     Utility.makeFlickrRequest(handleResponse, this);
   };
 
   Gallery.prototype.processThumbnailImages = function() {
+    var i, photosLen, photoGalleryDiv;
     if (this.photos) {
       photosLen = this.photos.length;
       photoGalleryDiv = Utility.$('.photo-gallery');

@@ -1,5 +1,7 @@
 (function(document, window) {
-  var httpRequest, settings;
+  'use strict';
+
+  var settings;
 
   settings = {
     basePath: 'https://api.flickr.com/services/rest/?',
@@ -13,6 +15,7 @@
 
   function buildQueryString() {
     var queryString = '', key, params = settings.params;
+
     for (key in params) {
       queryString += key + '=' + encodeURIComponent(params[key]) + '&';
     }
